@@ -1,7 +1,7 @@
 package com.checkr.interviews;
 
-import com.checkr.interviews.beans.utils.filter.ReflectiveCSVBeanFilterer;
-import com.checkr.interviews.parser.FundingCSVFinderFromFile;
+import com.checkr.interviews.utils.filter.ReflectiveCSVBeanFilterer;
+import com.checkr.interviews.utils.parser.FundingCSVFinderFromFile;
 
 import java.nio.file.Path;
 

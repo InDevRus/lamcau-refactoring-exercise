@@ -1,4 +1,4 @@
-package com.checkr.interviews.parser;
+package com.checkr.interviews.utils.parser;
 
 import com.checkr.interviews.FundingCSVBean;
 import com.opencsv.CSVReader;

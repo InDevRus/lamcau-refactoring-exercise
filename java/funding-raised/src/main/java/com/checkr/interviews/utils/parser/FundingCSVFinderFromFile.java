@@ -1,7 +1,7 @@
-package com.checkr.interviews.parser;
+package com.checkr.interviews.utils.parser;
 
 import com.checkr.interviews.FundingCSVBean;
-import com.checkr.interviews.beans.utils.filter.CSVBeanFilterer;
+import com.checkr.interviews.utils.filter.CSVBeanFilterer;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;

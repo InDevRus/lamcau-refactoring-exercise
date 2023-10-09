@@ -1,4 +1,4 @@
-package com.checkr.interviews.beans;
+package com.checkr.interviews.utils.beans;
 
 import java.lang.annotation.*;
 

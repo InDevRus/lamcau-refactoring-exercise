@@ -1,4 +1,4 @@
-package com.checkr.interviews.beans.utils.filter;
+package com.checkr.interviews.utils.filter;
 
 import lombok.experimental.StandardException;
 

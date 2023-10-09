@@ -1,6 +1,6 @@
 package com.checkr.interviews;
 
-import com.checkr.interviews.parser.FundingCSVFinder;
+import com.checkr.interviews.utils.parser.FundingCSVFinder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

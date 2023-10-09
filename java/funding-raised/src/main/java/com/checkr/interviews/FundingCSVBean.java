@@ -1,7 +1,7 @@
 package com.checkr.interviews;
 
-import com.checkr.interviews.beans.FilteringComponent;
-import com.checkr.interviews.beans.ParsedCSVBean;
+import com.checkr.interviews.utils.beans.FilteringComponent;
+import com.checkr.interviews.utils.beans.ParsedCSVBean;
 import com.opencsv.bean.CsvBindByName;
 import lombok.*;
 
