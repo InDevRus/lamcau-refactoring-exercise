@@ -1,20 +1,19 @@
 package com.checkr.interviews;
 
+import com.checkr.interviews.parser.FundingCSVFinder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-
-import java.io.IOException;
 
 /**
  * Unit test for simple App.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public interface FundingCSVFinderTests {
-    FundingCSVFinder getFinder();
+public interface FundingCSVFinderFromFileTests {
+    FundingCSVFinder<FundingCSVBean> getFinder();
 
     @Test
-    default void testFindVeryFirstRow() throws IOException {
+    default void testFindVeryFirstRow() {
         var filter = FundingCSVBean.builder()
                 .permalink("lifelock")
                 .raisedAmount(6850000)
@@ -40,7 +39,7 @@ public interface FundingCSVFinderTests {
      * Rigourous Test :-)
      */
     @Test
-    default void testWhereGivenCompany() throws IOException {
+    default void testWhereGivenCompany() {
         var filter = FundingCSVBean.builder()
                 .companyName("Facebook")
                 .build();
@@ -49,7 +48,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testWhereGivenCity() throws IOException {
+    default void testWhereGivenCity() {
         var filter = FundingCSVBean.builder()
                 .city("Tempe")
                 .build();
@@ -58,7 +57,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testWhereGivenState() throws IOException {
+    default void testWhereGivenState() {
         var filter = FundingCSVBean.builder()
                 .state("CA")
                 .build();
@@ -67,7 +66,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testWhereGivenRound() throws IOException {
+    default void testWhereGivenRound() {
         var filter = FundingCSVBean.builder()
                 .round("a")
                 .build();
@@ -76,7 +75,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testMultipleOptions() throws IOException {
+    default void testMultipleOptions() {
         var filter = FundingCSVBean.builder()
                 .round("a")
                 .companyName("Facebook")
@@ -86,7 +85,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testWhereNotExists() throws IOException {
+    default void testWhereNotExists() {
         var filter = FundingCSVBean.builder()
                 .companyName("NotFacebook")
                 .build();
@@ -95,7 +94,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testWhereCorrectKeys() throws IOException {
+    default void testWhereCorrectKeys() {
         var filter = FundingCSVBean.builder()
                 .companyName("Facebook")
                 .build();
@@ -114,7 +113,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testFindByGivenCompanyName() throws IOException {
+    default void testFindByGivenCompanyName() {
         var filter = FundingCSVBean.builder()
                 .companyName("Facebook")
                 .build();
@@ -135,7 +134,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testFindByGivenState() throws IOException {
+    default void testFindByGivenState() {
         var filter = FundingCSVBean.builder()
                 .state("CA")
                 .build();
@@ -157,7 +156,7 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testFindByMultipleOptions() throws IOException {
+    default void testFindByMultipleOptions() {
         var filter = FundingCSVBean.builder()
                 .companyName("Facebook")
                 .round("c")
@@ -179,12 +178,31 @@ public interface FundingCSVFinderTests {
     }
 
     @Test
-    default void testFindByNotExists() throws IOException {
+    default void testFindByNotExists() {
         var filter = FundingCSVBean.builder()
                 .companyName("NotFacebook")
                 .round("c")
                 .build();
 
         Assertions.assertTrue(getFinder().findBy(filter).isEmpty(), "FundingRaised.findBy should be empty.");
+    }
+
+    @Test
+    default void testFirstRowIsNotHeader() {
+        getFinder().findFirst(FundingCSVBean.builder().build()).ifPresent(firstRow -> {
+            Assertions.assertNotEquals(firstRow.getPermalink(), "permalink");
+            Assertions.assertNotEquals(firstRow.getCompanyName(), "company_name");
+        });
+    }
+
+    @Test
+    default void testHeaderIsNotFound() {
+        Assertions.assertTrue(getFinder()
+                .findFirst(FundingCSVBean
+                        .builder()
+                        .companyName("permalink")
+                        .permalink("permalink")
+                        .build())
+                .isEmpty());
     }
 }

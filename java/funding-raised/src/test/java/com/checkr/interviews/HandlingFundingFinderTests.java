@@ -1,15 +1,19 @@
 package com.checkr.interviews;
 
 import com.checkr.interviews.beans.utils.filter.HandlingCSVBeanFilterer;
+import com.checkr.interviews.parser.FundingCSVFinderFromFile;
 
 import java.nio.file.Path;
 
-public class HandlingFundingFinderTests implements FundingCSVFinderTests {
+public class HandlingFundingFinderTests implements FundingCSVFinderFromFileTests {
     private final Path sourcePath = Path.of("startup_funding.csv");
-    private final FundingCSVFinder finder = new FundingCSVFinder(sourcePath, HandlingCSVBeanFilterer.ofClass(FundingCSVBean.class));
+    private final FundingCSVFinderFromFile finder = FundingCSVFinderFromFile.builder()
+            .sourcePath(sourcePath)
+            .filterer(HandlingCSVBeanFilterer.ofClass(FundingCSVBean.class))
+            .build();
 
     @Override
-    public FundingCSVFinder getFinder() {
+    public FundingCSVFinderFromFile getFinder() {
         return finder;
     }
 }

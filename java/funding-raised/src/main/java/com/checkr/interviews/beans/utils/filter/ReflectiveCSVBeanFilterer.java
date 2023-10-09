@@ -1,6 +1,6 @@
 package com.checkr.interviews.beans.utils.filter;
 
-import com.checkr.interviews.beans.FilteringElement;
+import com.checkr.interviews.beans.FilteringComponent;
 import com.checkr.interviews.beans.ParsedCSVBean;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +19,11 @@ public final class ReflectiveCSVBeanFilterer<T extends ParsedCSVBean> implements
         var methodSearchCriteria = ReflectionUtils
                 .Methods
                 .get(model)
-                .filter(method -> method.isAnnotationPresent(FilteringElement.class));
+                .filter(method -> method.isAnnotationPresent(FilteringComponent.class));
         var getters = ReflectionUtils.get(methodSearchCriteria);
 
         if (getters.isEmpty()) {
-            throw new CSVBeanFiltererInitializationException(CSVBeanFiltererInitializationException.EMPTY_BEAN_MESSAGE_EXCEPTION);
+            throw new CSVBeanFiltererInitializationException(CSVBeanFiltererInitializationException.EMPTY_BEAN_TEMPLATE);
         }
 
         return new ReflectiveCSVBeanFilterer<>(getters);
@@ -40,7 +40,7 @@ public final class ReflectiveCSVBeanFilterer<T extends ParsedCSVBean> implements
     }
 
     @Override
-    public <U extends T> boolean testFilter(T filteringBean, U actualBean) {
+    public boolean testFilter(T filteringBean, T actualBean) {
         return getters.stream().allMatch(method -> testSpecificGetter(method, filteringBean, actualBean));
     }
 }
