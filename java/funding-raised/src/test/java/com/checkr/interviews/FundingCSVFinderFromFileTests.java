@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 /**
  * Unit test for simple App.
  */
@@ -27,7 +30,7 @@ public interface FundingCSVFinderFromFileTests {
             Assertions.assertEquals(found.getCategory(), "web");
             Assertions.assertEquals(found.getCity(), "Tempe");
             Assertions.assertEquals(found.getState(), "AZ");
-            Assertions.assertEquals(found.getFundedDate(), "1-May-07");
+            Assertions.assertEquals(found.getFundedDate(), LocalDate.of(2007, Month.MAY, 1));
             Assertions.assertEquals(found.getRaisedAmount(), 6850000);
             Assertions.assertEquals(found.getRaisedCurrency(), "USD");
             Assertions.assertEquals(found.getRound(), "b");
@@ -103,12 +106,12 @@ public interface FundingCSVFinderFromFileTests {
 
         Assertions.assertEquals(row.getPermalink(), "facebook");
         Assertions.assertEquals(row.getCompanyName(), "Facebook");
-        Assertions.assertEquals(row.getNumberEmployees(), (Integer) 450);
+        Assertions.assertEquals(row.getNumberEmployees(), 450);
         Assertions.assertEquals(row.getCategory(), "web");
         Assertions.assertEquals(row.getCity(), "Palo Alto");
         Assertions.assertEquals(row.getState(), "CA");
-        Assertions.assertEquals(row.getFundedDate(), "1-Sep-04");
-        Assertions.assertEquals(row.getRaisedAmount(), (Integer) 500000);
+        Assertions.assertEquals(row.getFundedDate(), LocalDate.of(2004, Month.SEPTEMBER, 1));
+        Assertions.assertEquals(row.getRaisedAmount(), 500000);
         Assertions.assertEquals(row.getRound(), "angel");
     }
 
@@ -123,12 +126,12 @@ public interface FundingCSVFinderFromFileTests {
         possibleRow.ifPresentOrElse(row -> {
             Assertions.assertEquals(row.getPermalink(), "facebook");
             Assertions.assertEquals(row.getCompanyName(), "Facebook");
-            Assertions.assertEquals(row.getNumberEmployees(), (Integer) 450);
+            Assertions.assertEquals(row.getNumberEmployees(), 450);
             Assertions.assertEquals(row.getCategory(), "web");
             Assertions.assertEquals(row.getCity(), "Palo Alto");
             Assertions.assertEquals(row.getState(), "CA");
-            Assertions.assertEquals(row.getFundedDate(), "1-Sep-04");
-            Assertions.assertEquals(row.getRaisedAmount(), (Integer) 500000);
+            Assertions.assertEquals(row.getFundedDate(), LocalDate.of(2004, Month.SEPTEMBER, 1));
+            Assertions.assertEquals(row.getRaisedAmount(), 500000);
             Assertions.assertEquals(row.getRound(), "angel");
         }, Assertions::fail);
     }
@@ -145,12 +148,12 @@ public interface FundingCSVFinderFromFileTests {
         possibleRow.ifPresentOrElse(row -> {
             Assertions.assertEquals(row.getPermalink(), "digg");
             Assertions.assertEquals(row.getCompanyName(), "Digg");
-            Assertions.assertEquals(row.getNumberEmployees(), (Integer) 60);
+            Assertions.assertEquals(row.getNumberEmployees(), 60);
             Assertions.assertEquals(row.getCategory(), "web");
             Assertions.assertEquals(row.getCity(), "San Francisco");
             Assertions.assertEquals(row.getState(), "CA");
-            Assertions.assertEquals(row.getFundedDate(), "1-Dec-06");
-            Assertions.assertEquals(row.getRaisedAmount(), (Integer) 8500000);
+            Assertions.assertEquals(row.getFundedDate(), LocalDate.of(2006, Month.DECEMBER, 1));
+            Assertions.assertEquals(row.getRaisedAmount(), 8500000);
             Assertions.assertEquals(row.getRound(), "b");
         }, Assertions::fail);
     }
@@ -167,12 +170,12 @@ public interface FundingCSVFinderFromFileTests {
         possibleRow.ifPresentOrElse(row -> {
             Assertions.assertEquals(row.getPermalink(), "facebook");
             Assertions.assertEquals(row.getCompanyName(), "Facebook");
-            Assertions.assertEquals(row.getNumberEmployees(), (Integer) 450);
+            Assertions.assertEquals(row.getNumberEmployees(), 450);
             Assertions.assertEquals(row.getCategory(), "web");
             Assertions.assertEquals(row.getCity(), "Palo Alto");
             Assertions.assertEquals(row.getState(), "CA");
-            Assertions.assertEquals(row.getFundedDate(), "1-Oct-07");
-            Assertions.assertEquals(row.getRaisedAmount(), (Integer) 300000000);
+            Assertions.assertEquals(row.getFundedDate(), LocalDate.of(2007, Month.OCTOBER, 1));
+            Assertions.assertEquals(row.getRaisedAmount(), 300000000);
             Assertions.assertEquals(row.getRound(), "c");
         }, Assertions::fail);
     }

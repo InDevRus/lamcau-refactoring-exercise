@@ -3,7 +3,10 @@ package com.checkr.interviews;
 import com.checkr.interviews.utils.beans.FilteringComponent;
 import com.checkr.interviews.utils.beans.ParsedCSVBean;
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvDate;
 import lombok.*;
+
+import java.time.LocalDate;
 
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -41,9 +44,10 @@ public class FundingCSVBean extends ParsedCSVBean {
     private String state;
 
     @CsvBindByName(column = "funded_date")
+    @CsvDate(value = "d-LLL-yy")
     @Getter(AccessLevel.PUBLIC)
     @FilteringComponent
-    private String fundedDate;
+    private LocalDate fundedDate;
 
     @CsvBindByName(column = "raised_amount")
     @Getter(AccessLevel.PUBLIC)
